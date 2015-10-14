@@ -251,7 +251,7 @@ public class Buscafacturas extends javax.swing.JFrame {
         }
         return encontrado;
     }
-    //   nuevo comit  2
+    //Prueba de commit desde la FCRB
     /**
      * @param args the command line arguments
      */
