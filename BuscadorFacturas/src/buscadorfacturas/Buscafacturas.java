@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 /**
  *
  * @author Adrián
@@ -92,8 +93,8 @@ public class Buscafacturas extends javax.swing.JFrame {
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buscadorfacturas/Idibaps.jpg"))); // NOI18N
         jLabel5.setText("jLabel5");
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel6.setText("Dev Adrián Grau");
+        jLabel6.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
+        jLabel6.setText("Dev Adrián Grau ");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -108,32 +109,31 @@ public class Buscafacturas extends javax.swing.JFrame {
                 .addContainerGap(29, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel6))
+                        .addGap(67, 67, 67)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(fcrb)
+                            .addComponent(idps)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(67, 67, 67)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(fcrb)
-                                    .addComponent(idps)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(36, 36, 36)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jLabel3)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(49, 49, 49))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel6)
+                .addGap(59, 59, 59))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -184,16 +184,16 @@ public class Buscafacturas extends javax.swing.JFrame {
         chooser = new JFileChooser();
         chooser.setCurrentDirectory(new java.io.File("."));
         chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        chooser.setAcceptAllFileFilterUsed(false);   
+        chooser.setAcceptAllFileFilterUsed(false);
         if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
-            destino =  chooser.getSelectedFile().getAbsolutePath();
+            destino = chooser.getSelectedFile().getAbsolutePath();
             System.out.println("getCurrentDirectory(): "
                     + chooser.getCurrentDirectory());
             System.out.println("getSelectedFile() : "
                     + chooser.getSelectedFile());
         } else {
             System.out.println("No Selection ");
-        }        
+        }
     }//GEN-LAST:event_escollirCarpetaDesti
 
     private void guardarFacturas(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarFacturas
@@ -201,7 +201,7 @@ public class Buscafacturas extends javax.swing.JFrame {
         if (!jTextArea1.getText().isEmpty()) {   // Una comprobacion que no este vacio el area donde se introducen facturas
             facturasBuscar = jTextArea1.getText().split("\n");   //Mete en el array lo que hay en JTextArea con un split por linea
             cuentaFra = facturasBuscar.length;   //Para el panel de info, mete la cantidad de facturas a buscar
-            System.out.println("guardarfactura:\n"+jTextArea1.getText()+ "\n num fact "+ cuentaFra);
+            System.out.println("guardarfactura:\n" + jTextArea1.getText() + "\n num fact " + cuentaFra);
             if (cuentaFra > 0) {  //Comprobacion que haya al menos una factura a buscar
                 File f = new File(pathBusqueda), subf;  //Crea el objeto f con el path comun y el objecto subf para
                 String[] fs = f.list();  //lista el contenido de f y lo mete en el array de Strings fs
@@ -211,42 +211,49 @@ public class Buscafacturas extends javax.swing.JFrame {
                     if (fcrb.isSelected()) {  //Inicia busqueda para los gastos marcados para FUND
                         for (int i = 0; i < fs.length && !encontrado; i++) {  //busca en fs si no se ha encontrado la factura
                             Pattern p = Pattern.compile("^FUNDACIO 20.*");
-                            Matcher m= p.matcher(fs[i]);
-                            if (m.matches()){
-                                subf = new File(pathBusqueda+fs[i]);   //Crea el objeto subf que contiene el fs en la posición i
+                            Matcher m = p.matcher(fs[i]);
+                            if (m.matches()) {
+                                subf = new File(pathBusqueda + fs[i]);   //Crea el objeto subf que contiene el fs en la posición i
                                 if (subf.isDirectory()) {  //Comprueba si subf es un directorio
-                                    System.out.println("Entramos en la carpeta "+subf.getName());
-                                    String pathSubBusqueda = pathBusqueda +   subf.getName()+"\\" ;
+                                    System.out.println("Entramos en la carpeta " + subf.getName());
+                                    String pathSubBusqueda = pathBusqueda + subf.getName() + "\\";
                                     encontrado = buscarFacturaDirectorio(fac, subf, pathSubBusqueda);  //envia al metodo la fac y el directorio
                                 }
                             }
                         }
                     }
                     // punto en el que se si he encontrado o no la factura
-                    if (encontrado) encontrado = false;   // he encontrado la factura y la he copiado al destino
-                    //else punto en el que se que no he encontrado la factura
+                    if (encontrado) {
+                        encontrado = false;   // he encontrado la factura y la he copiado al destino
+                        cuentaFraE++;
+                    } //else punto en el que se que no he encontrado la factura
+                    else {
+                        cuentaFraNoE++;
+                        porcFraNoE = (cuentaFraNoE / facturasBuscar.length) * 100;
+                    }
                 }
             }
         }
     }//GEN-LAST:event_guardarFacturas
 
-    private boolean buscarFacturaDirectorio(String fac, File subf,String pathBusqueda) {
+    private boolean buscarFacturaDirectorio(String fac, File subf, String pathBusqueda) {
         System.out.println("Path completo de la carpeta: " + subf.getAbsolutePath());
         String[] subdir = subf.list();   //mete en el string subdir el contenido de subf que previamente se ha cromprobado que es un Directorio
         boolean encontrado = false;    //Devolvera un boolean si lo encuentra
         for (int i = 0; i < subdir.length && !encontrado; i++) {//for para buscar en subdir
             File f = new File(pathBusqueda + subdir[i]);
-            System.out.println(f.getAbsolutePath()+ " " +fac + " " + !f.isFile());// crea el objeto f de la clase flie con subdir[i]
-            if (!f.isDirectory()&& f.getName().matches(fac)) { try {
-                //Si es un archivo debera comprobar si es la factura que buscamos
-                System.out.println("encontrada "+subf.getAbsolutePath()+"\\"+fac);
-                FileCopy fileCopy = new FileCopy(subf.getAbsolutePath()+"\\"+fac,destino);
+            System.out.println(f.getAbsolutePath() + " " + fac + " " + !f.isFile());// crea el objeto f de la clase flie con subdir[i]
+            if (!f.isDirectory() && f.getName().matches(fac)) {
+                try {
+                    //Si es un archivo debera comprobar si es la factura que buscamos
+                    System.out.println("encontrada " + subf.getAbsolutePath() + "\\" + fac);
+                    FileCopy fileCopy = new FileCopy(subf.getAbsolutePath() + "\\" + fac, destino);
                 } catch (Exception ex) {
                     Logger.getLogger(Buscafacturas.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 encontrado = true;
             } else if (f.isDirectory()) { //Si es un Directorio el metodo se llamara a si mismo para seguir buscando
-                encontrado = buscarFacturaDirectorio(fac, f, pathBusqueda + f.getName()+ "\\");
+                encontrado = buscarFacturaDirectorio(fac, f, pathBusqueda + f.getName() + "\\");
             }
         }
         return encontrado;
@@ -309,8 +316,8 @@ public class Buscafacturas extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     private String facturasBuscar[];
     private String facturasNoE[];
-    int cuentaFra, cuentaFraNoE;
-    double porcFraNoE;   
+    int cuentaFra, cuentaFraNoE, cuentaFraE;
+    double porcFraNoE = 0;
     String pathBusqueda = "F:/FUNDACIO/CARPETA FACTURAS/";
-    private String destino; 
+    private String destino;
 }
