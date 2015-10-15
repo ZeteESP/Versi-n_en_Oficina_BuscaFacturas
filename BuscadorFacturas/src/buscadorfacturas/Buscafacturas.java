@@ -6,6 +6,7 @@
 package buscadorfacturas;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
@@ -23,6 +24,7 @@ public class Buscafacturas extends javax.swing.JFrame {
      */
     public Buscafacturas() {
         initComponents();
+//        facturasNoE =new ArrayList(<String>
     }
 
     /**
@@ -39,8 +41,6 @@ public class Buscafacturas extends javax.swing.JFrame {
         jTextArea1 = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextPane2 = new javax.swing.JTextPane();
         jLabel2 = new javax.swing.JLabel();
@@ -51,6 +51,7 @@ public class Buscafacturas extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        resum = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Busca Facturas FCRB/IDPS");
@@ -67,8 +68,6 @@ public class Buscafacturas extends javax.swing.JFrame {
         });
 
         jLabel1.setText("Factures a buscar:");
-
-        jScrollPane2.setViewportView(jTextPane1);
 
         jScrollPane3.setViewportView(jTextPane2);
 
@@ -121,11 +120,10 @@ public class Buscafacturas extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(resum, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -151,8 +149,9 @@ public class Buscafacturas extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                        .addGap(10, 10, 10)
+                        .addComponent(resum, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addComponent(fcrb)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(idps)
@@ -197,7 +196,15 @@ public class Buscafacturas extends javax.swing.JFrame {
     }//GEN-LAST:event_escollirCarpetaDesti
 
     private void guardarFacturas(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarFacturas
-        boolean encontrado = false;   //Si ha encontrado la factura
+        if (fcrb.isSelected()) {
+            guardarFacturasEntidad("FUNDACIO");
+        }else if (idps.isSelected()){
+            guardarFacturasEntidad("IDIBAPS");
+        }
+    }//GEN-LAST:event_guardarFacturas
+
+    private void guardarFacturasEntidad(String entidad) {
+    boolean encontrado = false;   //Si ha encontrado la factura
         if (!jTextArea1.getText().isEmpty()) {   // Una comprobacion que no este vacio el area donde se introducen facturas
             facturasBuscar = jTextArea1.getText().split("\n");   //Mete en el array lo que hay en JTextArea con un split por linea
             cuentaFra = facturasBuscar.length;   //Para el panel de info, mete la cantidad de facturas a buscar
@@ -207,10 +214,12 @@ public class Buscafacturas extends javax.swing.JFrame {
                 String[] fs = f.list();  //lista el contenido de f y lo mete en el array de Strings fs
                 for (String fac : facturasBuscar) {  //hace un for para cada fac del estring facturasBuscar
                     fac = fac + ".pdf";
+                    String any = fac.substring(2,4);
+                    
                     System.out.println(fac);
-                    if (fcrb.isSelected()) {  //Inicia busqueda para los gastos marcados para FUND
+                    
                         for (int i = 0; i < fs.length && !encontrado; i++) {  //busca en fs si no se ha encontrado la factura
-                            Pattern p = Pattern.compile("^FUNDACIO 20.*");
+                            Pattern p = Pattern.compile("^"+entidad+" 20"+any+".*");
                             Matcher m = p.matcher(fs[i]);
                             if (m.matches()) {
                                 subf = new File(pathBusqueda + fs[i]);   //Crea el objeto subf que contiene el fs en la posición i
@@ -221,21 +230,31 @@ public class Buscafacturas extends javax.swing.JFrame {
                                 }
                             }
                         }
-                    }
+                    
                     // punto en el que se si he encontrado o no la factura
                     if (encontrado) {
                         encontrado = false;   // he encontrado la factura y la he copiado al destino
                         cuentaFraE++;
+                        porcFraNoE = (cuentaFraNoE / facturasBuscar.length) * 100;
+                        resum.setText("Fra total a buscar: "+facturasBuscar.length+
+                              "\nFra trobades: "+cuentaFraE+
+                        "/nFra no trobades: "+cuentaFraNoE+
+                               "/n% no trobades: "+porcFraNoE );
                     } //else punto en el que se que no he encontrado la factura
                     else {
                         cuentaFraNoE++;
                         porcFraNoE = (cuentaFraNoE / facturasBuscar.length) * 100;
+                        resum.setText("Fra total a buscar: "+facturasBuscar.length+
+                              "\nFra trobades: "+cuentaFraE+
+                        "/nFra no trobades: "+cuentaFraNoE+
+                               "/n% no trobades: "+porcFraNoE );
+                        
                     }
                 }
             }
         }
-    }//GEN-LAST:event_guardarFacturas
-
+    }
+    
     private boolean buscarFacturaDirectorio(String fac, File subf, String pathBusqueda) {
         System.out.println("Path completo de la carpeta: " + subf.getAbsolutePath());
         String[] subdir = subf.list();   //mete en el string subdir el contenido de subf que previamente se ha cromprobado que es un Directorio
@@ -308,16 +327,18 @@ public class Buscafacturas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextPane jTextPane1;
     private javax.swing.JTextPane jTextPane2;
+    private javax.swing.JLabel resum;
     // End of variables declaration//GEN-END:variables
     private String facturasBuscar[];
-    private String facturasNoE[];
+    private ArrayList <String> facturasNoE[];
     int cuentaFra, cuentaFraNoE, cuentaFraE;
     double porcFraNoE = 0;
-    String pathBusqueda = "F:/FUNDACIO/CARPETA FACTURAS/";
+    String pathBusqueda = "C:/FUNDACIO/CARPETA FACTURAS/";  
+    
     private String destino;
+
+    
 }
