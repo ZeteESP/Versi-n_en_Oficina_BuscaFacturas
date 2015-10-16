@@ -240,8 +240,8 @@ public class Buscafacturas extends javax.swing.JFrame {
                                 encontrado = buscarFacturaDirectorio(fac, subf, pathSubBusqueda);  //envia al metodo la fac y el directorio
                             }
                         }
-                    }
 
+                    }
                     // punto en el que se si he encontrado o no la factura
                     if (encontrado) {
                         encontrado = false;   // he encontrado la factura y la he copiado al destino
