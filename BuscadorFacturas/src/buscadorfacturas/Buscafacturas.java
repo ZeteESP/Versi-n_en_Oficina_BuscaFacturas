@@ -57,7 +57,7 @@ public class Buscafacturas extends javax.swing.JFrame {
         resum4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Busca Facturas FCRB/IDPS");
+        setTitle("Busca Facturas FCRB/IDPS v1.0");
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -246,7 +246,7 @@ public class Buscafacturas extends javax.swing.JFrame {
                     if (encontrado) {
                         encontrado = false;   // he encontrado la factura y la he copiado al destino
                         cuentaFraE++;
-                        porcFraNoE = ((cuentaFraNoE / facturasBuscar.length) * 100);
+                        porcFraNoE = (cuentaFraNoE / facturasBuscar.length) * 100;
                         resum1.setText("Fra total a buscar: " + facturasBuscar.length);
                         resum2.setText("Fra trobades: " + cuentaFraE);
                         resum3.setText("Fra no trobades: " + cuentaFraNoE);
@@ -271,8 +271,8 @@ public class Buscafacturas extends javax.swing.JFrame {
         String[] subdir = subf.list();   //mete en el string subdir el contenido de subf que previamente se ha cromprobado que es un Directorio
         boolean encontrado = false;    //Devolvera un boolean si lo encuentra
         for (int i = 0; i < subdir.length && !encontrado; i++) {//for para buscar en subdir
-            File f = new File(pathBusqueda + subdir[i]);
-            System.out.println(f.getAbsolutePath() + " " + fac + " " + !f.isFile());// crea el objeto f de la clase flie con subdir[i]
+            File f = new File(pathBusqueda + subdir[i]); // crea el objeto f de la clase flie con subdir[i]
+            System.out.println(f.getAbsolutePath() + " " + fac + " " + !f.isFile());
             if (!f.isDirectory() && f.getName().matches(fac)) {
                 try {
                     //Si es un archivo debera comprobar si es la factura que buscamos
@@ -349,7 +349,7 @@ public class Buscafacturas extends javax.swing.JFrame {
     private String facturasBuscar[];
     private ArrayList<String> facturasNoE[];
     int cuentaFra, cuentaFraNoE, cuentaFraE;
-    double porcFraNoE = 0;
+    int porcFraNoE = 0;
     String pathBusqueda = "F:/FUNDACIO/CARPETA FACTURAS/";
 
     private String destino;
