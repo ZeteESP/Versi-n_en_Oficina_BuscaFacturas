@@ -62,7 +62,7 @@ public class Buscafacturas extends javax.swing.JFrame {
         clipboard = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Busca Facturas FCRB/IDPS v1.0");
+        setTitle("Busca Facturas FCRB/IDPS ");
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -104,7 +104,7 @@ public class Buscafacturas extends javax.swing.JFrame {
         jLabel5.setText("jLabel5");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
-        jLabel6.setText("Dev Adrián Grau ");
+        jLabel6.setText("Dev Adrián Grau v1.0 ");
 
         clipboard.setText("Copy to clipboard");
         clipboard.addActionListener(new java.awt.event.ActionListener() {
@@ -399,7 +399,7 @@ public class Buscafacturas extends javax.swing.JFrame {
     private String facturasBuscar[];
     int cuentaFra, cuentaFraNoE, cuentaFraE;
     int porcFraNoE = 0;
-    String pathBusqueda = "C:/FUNDACIO/CARPETA FACTURAS/";
+    String pathBusqueda = "F:/FUNDACIO/CARPETA FACTURAS/";
 
     private String destino;
 
