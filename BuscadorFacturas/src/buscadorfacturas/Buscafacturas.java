@@ -311,17 +311,13 @@ public class Buscafacturas extends javax.swing.JFrame {
     }//GEN-LAST:event_clipboardActionPerformed
 
     private void escollirCarpetaRename(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_escollirCarpetaRename
-         LeerExcel.LeerExcel(this);
-    }//GEN-LAST:event_escollirCarpetaRename
-
-    private void escollirExcellRename(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_escollirExcellRename
          JFileChooser chooser;
         chooser = new JFileChooser();
         chooser.setCurrentDirectory(new java.io.File("."));
         chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         chooser.setAcceptAllFileFilterUsed(false);
         if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
-            excelRename = chooser.getSelectedFile().getAbsolutePath();
+            carpetaRename = chooser.getSelectedFile().getAbsolutePath();
             System.out.println("getCurrentDirectory(): "
                     + chooser.getCurrentDirectory());
             System.out.println("getSelectedFile() : "
@@ -329,6 +325,11 @@ public class Buscafacturas extends javax.swing.JFrame {
         } else {
             System.out.println("No Selection ");
         }
+    }//GEN-LAST:event_escollirCarpetaRename
+
+    private void escollirExcellRename(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_escollirExcellRename
+        LeerExcel.LeerExcel(this); 
+        
     }//GEN-LAST:event_escollirExcellRename
 
     private void guardarFacturasEntidad(String entidad) {
